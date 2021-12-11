@@ -25,14 +25,16 @@ const main = async() => {
 
   // Call add_gif!
 
-  await program.rpc.addGif({
+  await program.rpc.addGif('https://vignette.wikia.nocookie.net/marvelvscapcom/images/b/be/MVC2_Cable.jpg/revision/latest?cb=20110914072054',{
     accounts: {
       baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
     },
   });
 
   account = await program.account.baseAccount.fetch(baseAccount.publicKey);
   console.log('🦸🏽‍♂️ Hero Count', account.totalGifs.toString());
+  console.log('👀 GIF List', account.gifList);
 }
 
 const runMain = async () => {
